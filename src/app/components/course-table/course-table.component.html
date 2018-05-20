@@ -1,0 +1,77 @@
+<div *ngIf="!isLoading" class="courses-table-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+    </ng-container>
+
+    <!-- Depart Column -->
+    <ng-container matColumnDef="depart">
+      <mat-header-cell *matHeaderCellDef> Départ </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.depart}} </mat-cell>
+    </ng-container>
+
+    <!-- Gare Column -->
+    <ng-container matColumnDef="gareDepart">
+      <mat-header-cell *matHeaderCellDef> Gare </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.gareDepart}} </mat-cell>
+    </ng-container>
+
+    <!-- Heure Column -->
+    <ng-container matColumnDef="heure">
+      <mat-header-cell *matHeaderCellDef> Heure </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.heure}} </mat-cell>
+    </ng-container>
+
+    <!-- Arrivée Column -->
+    <ng-container matColumnDef="arrivee">
+      <mat-header-cell *matHeaderCellDef> Arrivée </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.arrivee}} </mat-cell>
+    </ng-container>
+
+    <!-- Heure Column -->
+    <ng-container matColumnDef="gareArrivee">
+      <mat-header-cell *matHeaderCellDef> Gare </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.gareArrivee}} </mat-cell>
+    </ng-container>
+
+    <!-- BUPO Column -->
+    <ng-container matColumnDef="BUPO">
+      <mat-header-cell *matHeaderCellDef> BUPO </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.BUPO}} </mat-cell>
+    </ng-container>
+
+    <!-- numeroDeBon Column -->
+    <ng-container matColumnDef="numeroDeBon">
+      <mat-header-cell *matHeaderCellDef> N° Bon </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.numeroDeBon}} </mat-cell>
+    </ng-container>
+
+    <!-- Tarif HT Column -->
+    <ng-container matColumnDef="tarifHT">
+      <mat-header-cell *matHeaderCellDef> Tarif HT </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.tarifHT}} </mat-cell>
+    </ng-container>
+
+    <!-- Etat Column -->
+    <ng-container matColumnDef="etat">
+      <mat-header-cell *matHeaderCellDef> Etat </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.etat}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+</div>
+<br>
+
+<div *ngIf="isLoading">
+  <mat-progress-spinner class="loadingTable" [color]="'primary'" [mode]="'indeterminate'" [value]="50"></mat-progress-spinner>
+</div>

@@ -1,0 +1,36 @@
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.loadingTable {
+  margin: 0 10px;
+}
+
+mat-row:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+
+.mat-header-row {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background-color: inherit;
+}
+
+div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.courses-table-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}

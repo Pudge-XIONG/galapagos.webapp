@@ -1,0 +1,25 @@
+<div>
+  <mat-form-field>
+    <mat-select [(value)]="pickedState">
+      <mat-option value="None">Filtrer les courses par l'état</mat-option>
+      <mat-option value="CONFIRMEE">CONFIRMEE</mat-option>
+      <mat-option value="ATTENTE_CONFIRMATION">ATTENTE_CONFIRMATION</mat-option>
+      <mat-option value="REGULARISEE">REGULARISEE</mat-option>
+      <mat-option value="MODIFICATION_POTENTIELLE">MODIFICATION_POTENTIELLE</mat-option>
+      <mat-option value="ANNULEE">ANNULEE</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div>
+  <mat-form-field>
+    <input matInput [matDatepicker]="dp" placeholder="Mois et Année" [(ngModel)]="pickedDate">
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp
+                    startView="multi-year"
+                    (yearSelected)="chosenYearHandler($event)"
+                    (monthSelected)="chosenMonthHandler($event, dp)"
+                    panelClass="year-month-picker">
+    </mat-datepicker>
+  </mat-form-field>
+</div>

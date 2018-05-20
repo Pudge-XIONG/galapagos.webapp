@@ -1,0 +1,12 @@
+div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.year-month-picker .mat-calendar-period-button {
+    pointer-events: none;
+}
+
+.year-month-picker .mat-calendar-arrow {
+    display: none;
+}
