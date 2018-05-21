@@ -13,7 +13,7 @@
 
 <div>
   <mat-form-field>
-    <input matInput [matDatepicker]="dp" placeholder="Mois et Année" [(ngModel)]="pickedDate">
+    <input matInput [matDatepicker]="dp" placeholder="Mois et Année" [(ngModel)]="pickedDate" readonly>
     <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
     <mat-datepicker #dp
                     startView="multi-year"
