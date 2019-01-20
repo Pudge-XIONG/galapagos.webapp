@@ -34,3 +34,11 @@ div {
   overflow: auto;
   max-height: 500px;
 }
+
+.confirmed {
+  color: #4CAF50;
+}
+
+.confirm-error {
+  color: red;
+}

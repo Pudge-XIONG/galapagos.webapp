@@ -61,7 +61,7 @@
     <!-- Etat Column -->
     <ng-container matColumnDef="etat">
       <mat-header-cell *matHeaderCellDef> Etat </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.etat}} </mat-cell>
+      <mat-cell *matCellDef="let element" [ngClass]="{'confirmed': element.etat == 'COMMANDEE_PRESTATAIRE'}" [ngClass]="{'confirm-error': element.etat == 'CONFIRMATION_ERROR'}"> {{element.etat}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

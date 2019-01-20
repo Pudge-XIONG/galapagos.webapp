@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Course } from '../../classes/Course';
 import { GetCoursesService } from '../../services/get-courses.service';
+import { UpdateCoursesService } from '../../services/update-courses.service';
 import {MatTableDataSource} from '@angular/material';
 
 @Component({
@@ -57,7 +58,7 @@ export class CourseTableComponent implements OnInit {
     //console.log(value);
   }
 
-  constructor(private getCoursesService: GetCoursesService) { }
+  constructor(private getCoursesService: GetCoursesService, private updateCoursesService : UpdateCoursesService) { }
 
   ngOnInit() {
     this.loadData();
@@ -77,5 +78,53 @@ export class CourseTableComponent implements OnInit {
 
   private filterData(){
     this.dataSource = new MatTableDataSource(this.courseArray);
+    
+    //const foundIndex = this.dataSource.dataChange.value.findIndex(x => x.numeroDeBon === '2019-01-000133-27');
+        // Then you update that record using dialogData
+    //var changeCourse = this.dataSource.dataChange.value[foundIndex];
+    //changeCourse.etat = 'dodododo';
+    //this.dataSource.dataChange.value[foundIndex].etat = 'dodododo';
+    // Usage!
+    for (let course of this.courseArray) {
+      if(course.etat == 'ATTENTE_CONFIRMATION'){
+        var updateCourseJson = 
+        '{' + 
+          '"idCourse": "' + course.idCourse + '",' + 
+          '"infoCourse": {' + 
+            '"lieuDepSNCF": "' + course.lieuDepSNCF + '",' + 
+            '"adresseDep": "' + course.adresseDep + '",' + 
+            '"lieuArrSNCF": "' + course.lieuArrSNCF + '",' + 
+            '"adresseArr": "' + course.adresseArr + '",' + 
+            '"heureDep": "' + course.heureDep + '"' + 
+          '},' + 
+          '"statutPriseEnCharge": {' +
+            '"codeStatut": 1' + 
+          '},' + 
+          '"chauffeur": {' + 
+            '"nom": "ABCD NARBONNE TAXI",' + 
+            '"prenom": "ABCD NARBONNE TAXI",' + 
+            '"telephone": "0612821821"' + 
+          '},' + 
+          '"vehicule": {' + 
+            '"type": "XXX",' + 
+            '"marque": "XXX",' +
+            '"couleur": "XXX",' + 
+            '"plaque": "XXX"' +
+          '},' +
+          '"referencePrestataire": {' +
+            '"referenceCourse": "' + course.referenceCourse + '"' +
+          '}' + 
+        '}';
+
+        this.updateCoursesService.updateCourse(updateCourseJson).subscribe(reponse => {
+          if(reponse.status == 201){
+            course.etat = 'COMMANDEE_PRESTATAIRE'
+          } else {
+            course.etat = 'CONFIRMATION_ERROR';
+          }
+        });;
+      }
+    }
   }
+
 }

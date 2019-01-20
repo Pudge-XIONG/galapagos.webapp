@@ -8,5 +8,12 @@ export class Course{
     BUPO: String;
     numeroDeBon: String;
     tarifHT: String;
-    etat: String; 
+    etat: String;
+    idCourse: String;
+    lieuDepSNCF: String;
+    adresseDep: String;
+    lieuArrSNCF: String;
+    adresseArr: String;
+    heureDep: String;
+    referenceCourse: String;
 }
