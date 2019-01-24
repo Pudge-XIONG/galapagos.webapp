@@ -76,7 +76,12 @@ export class CourseTableComponent implements OnInit {
     //console.log(this.dataSource);
   }
 
-  private filterData(){
+  private async delay(ms: number)
+  {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private async filterData(){
     this.dataSource = new MatTableDataSource(this.courseArray);
     
     //const foundIndex = this.dataSource.dataChange.value.findIndex(x => x.numeroDeBon === '2019-01-000133-27');
@@ -116,13 +121,20 @@ export class CourseTableComponent implements OnInit {
           '}' + 
         '}';
 
-        this.updateCoursesService.updateCourse(updateCourseJson).subscribe(reponse => {
-          if(reponse.status == 201){
-            course.etat = 'COMMANDEE_PRESTATAIRE'
-          } else {
+        this.updateCoursesService.updateCourse(updateCourseJson).subscribe(
+          reponse => {
+            if(reponse.status == 201){
+              course.etat = 'COMMANDEE_PRESTATAIRE';
+            } else {
+              course.etat = 'CONFIRMATION_ERROR';
+            }
+          }, 
+          error => {
             course.etat = 'CONFIRMATION_ERROR';
           }
-        });;
+        );
+
+        await this.delay(31000);
       }
     }
   }

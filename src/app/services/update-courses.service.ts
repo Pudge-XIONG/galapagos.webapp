@@ -11,9 +11,9 @@ export class UpdateCoursesService {
 
   public updateCourse(courseJsonStr: String){
 
-    let restUrl = '../export_recap_to_excel_v2.php?update=true';
-    //let restUrl = 'http://localhost/galapagos.taxi/export_recap_to_excel_v2.php?update=true';
-    console.log('calling web service ' + restUrl);
+    //let restUrl = '../export_recap_to_excel_v2.php?update=true';
+    let restUrl = 'http://localhost/galapagos.taxi/export_recap_to_excel_v2.php?update=true';
+    //console.log('calling web service ' + restUrl);
     return this.httpClient.post(restUrl, courseJsonStr);
 
   }

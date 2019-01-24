@@ -17,9 +17,8 @@ export class GetCoursesService {
   public getCourseByDate(date: Date): Observable<any> {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
-    let restUrl = '../export_recap_to_excel_v2.php?year=' + year + '&month=' + month;
-    //let restUrl = 'http://localhost/galapagos.taxi/export_recap_to_excel_v2.php?year=' + year + '&month=' + month;
-    console.log('calling web service ' + restUrl);
+    //let restUrl = '../export_recap_to_excel_v2.php?year=' + year + '&month=' + month;
+    let restUrl = 'http://localhost/galapagos.taxi/export_recap_to_excel_v2.php?year=' + year + '&month=' + month;
     return this.httpClient.get(restUrl);
   };
 }
